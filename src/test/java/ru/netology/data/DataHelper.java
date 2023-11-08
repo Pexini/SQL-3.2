@@ -8,12 +8,12 @@ import java.util.Locale;
 public class DataHelper {
     private static final Faker faker = new Faker(new Locale("en"));
 
-    private DataHelper() {
 
+    private DataHelper() {
     }
 
     public static AuthInfo getAuthInfoWithTestData() {
-        return new AuthInfo("vasya", "qwerty123");
+        return new AuthInfo("vasya","qwerty123");
     }
 
     private static String generateRandomLogin() {
@@ -24,8 +24,8 @@ public class DataHelper {
         return faker.internet().password();
     }
 
-    private static AuthInfo getRandomUser() {
-        return new AuthInfo(generateRandomLogin(), generateRandomPassword());
+    public static AuthInfo generateRandomUser() {
+        return new AuthInfo(generateRandomLogin(),generateRandomPassword());
     }
 
     public static VerificationCode generateRandomVerificationCode() {
@@ -33,12 +33,13 @@ public class DataHelper {
     }
 
     @Value
-    public static class AuthInfo{
-        String Login;
+    public static class AuthInfo {
+        String login;
         String password;
     }
+
     @Value
-    public static class VerificationCode{
+    public static class VerificationCode {
         String code;
     }
 }
