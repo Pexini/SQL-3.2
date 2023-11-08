@@ -28,5 +28,6 @@ public class VerificationPage {
     public void verify(String verificationCode) {
         codeField.setValue(verificationCode);
         verifyButton.click();
+
     }
 }
