@@ -11,6 +11,11 @@ import static ru.netology.data.SQLHelper.*;
 public class BankLoginTest {
     LoginPage loginPage;
 
+    @BeforeEach
+    void setup() {
+        loginPage = open("http://localhost:9999/", LoginPage.class);
+    }
+
     @AfterEach
     void tearDown() {
         cleanAuthCodes();
@@ -19,11 +24,6 @@ public class BankLoginTest {
     @AfterAll
     static void tearDownAll() {
         cleanDataBase();
-    }
-
-    @BeforeEach
-    void setup() {
-        loginPage = open("http://localhost:9999/", LoginPage.class);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BankLoginTest {
     void shouldGetErrorNotificationIfLoginWithRandomUserWithoutAddingToBase() {
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
-        loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
+        loginPage.verifyErrorNotification("Ошибка! \nНеверно указан логин или пароль");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class BankLoginTest {
         verificationPage.verificationPageVisiblity();
         var verificationCode = DataHelper.generateRandomVerificationCode();
         verificationPage.verify(verificationCode.getCode());
-        verificationPage.verifyErrorNotification("Ошибка! Неверно указан код! Попробуйте ещё раз.");
+        verificationPage.verifyErrorNotification("Ошибка! \nНеверно указан код! Попробуйте ещё раз.");
 
     }
 }
