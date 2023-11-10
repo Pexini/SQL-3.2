@@ -35,4 +35,24 @@ public class BankLoginTest {
         var verificationCode = SQLHelper.getVerificationCode();
         verificationPage.validVerify(verificationCode.getCode());
     }
+
+    @Test
+    @DisplayName("Should get error notification if user is not exist in base")
+    void shouldGetErrorNotificationIfLoginWithRandomUserWithoutAddingToBase() {
+        var authInfo = DataHelper.generateRandomUser();
+        loginPage.validLogin(authInfo);
+        loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
+    }
+
+    @Test
+    @DisplayName("Should get error notification if login with exist in base and active user and random verification code")
+    void shouldGetErrorNotificationIfLoginWithExistUserAndRandomVerificationCode() {
+        var authInfo = DataHelper.getAuthInfoWithTestData();
+        var verificationPage = loginPage.validLogin(authInfo);
+        verificationPage.verificationPageVisiblity();
+        var verificationCode = DataHelper.generateRandomVerificationCode();
+        verificationPage.verify(verificationCode.getCode());
+        verificationPage.verifyErrorNotification("Ошибка! Неверно указан код! Попробуйте ещё раз.");
+
+    }
 }

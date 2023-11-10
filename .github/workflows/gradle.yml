@@ -21,6 +21,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew test --info -Dselenide.headless=true
       - name: Container start
-        run: docker-compose up &
+        run: docker-compose up
       - name: Waiting for сontainer start
         run: sleep 30
