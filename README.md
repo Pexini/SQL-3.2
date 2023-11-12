@@ -1,2 +1,2 @@
 # SQL-3.2
-[![Java CI with Gradle](https://github.com/Pexini/SQL-3.2/actions/workflows/gradle.yml/badge.svg)](https://github.com/Pexini/SQL-3.2/actions/workflows/gradle.yml)
+The following actions uses node12 which is deprecated and will be forced to run on node16: actions/checkout@v2, actions/setup-java@v2. For more info: https://github.blog/changelog/2023-06-13-github-actions-all-actions-will-run-on-node16-instead-of-node12-by-default/
